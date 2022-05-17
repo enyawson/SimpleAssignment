@@ -138,7 +138,7 @@ export default class customerListItems extends Component {
 
     }
       //table of items
-      employeeItemsTable() {
+    employeeItemsTable() {
         return (<div className="container">
            
             <p>Please Insert from the list of items available</p>
@@ -169,11 +169,11 @@ export default class customerListItems extends Component {
 
     //table of items
     fillTable() {
-        return (<div className="container">
+        return (<div className="container" style={{alignSelf:'center', width:'80%',}}>
            
             <p>Please select from the list of items available</p>
             
-                <table className="table table-striped">
+                <table className="table table-striped"  >
                     <thead>
                         <tr>
                             <th>Items</th>
@@ -182,7 +182,7 @@ export default class customerListItems extends Component {
                     </thead>
                     {
                     this.state.list.map((item, index)=> 
-                        <tbody key={index} className="Table-body">
+                        <tbody key={index} className="Table-body" style={{alignItems:'center', alignSelf:'center'}} >
                             <tr>
                                 <td>{item.itemName}</td>
                                
@@ -195,37 +195,41 @@ export default class customerListItems extends Component {
                 </table>
         </div>); 
     }
- userCustomer=()=>{
+
+     userCustomer=()=>{
      this.setState({
          customerSelected: true,
          employeeSelected: false
      })
- }
- userEmployee=()=>{
+    }
+
+    userEmployee=()=>{
     this.setState({
         customerSelected: false,
         employeeSelected: true
     })
-}
+    }
+    
 
     render() {
         return(
             <div>
                 <div style={{flexDirection:'row', margin:5, marginBottom: 10}}>
-                    <button  style={{marginRight:10}} onClick={this.userCustomer} type="button" class="btn btn-primary btn-lg">EMPLOYEE</button>   
-                    <button  style={{marginLeft:10}}onClick={this.userEmployee} type="button" class="btn btn-primary btn-lg">CUSTOMER</button>                 
+                    <button  style={{marginRight:10}} onClick={this.userCustomer} type="button" class="btn btn-primary btn-lg">CUSOTMER</button>   
+                    <button  style={{marginLeft:10}}onClick={this.userEmployee} type="button" class="btn btn-primary btn-lg">EMPLOYEE</button>                 
                 </div>
                 {this.state.customerSelected == true? <div>
                     <h2>Customer</h2>
                     <div>{this.actionButtons()}</div>
                     <div>{this.fillTable()}</div> 
-                    <div> {this.insertItems()}</div>
+                    
                 </div>
                 : 
                 <div>
                     <h2>Employee</h2>
                         {this.employeeActionButtons()}
                         {this.employeeItemsTable()}
+                        {this.insertItems()}
                 </div>}
                
             </div>
